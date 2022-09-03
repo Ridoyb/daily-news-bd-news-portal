@@ -58,4 +58,12 @@
     overflow: hidden;
   }
 
+
+  /* Resposive Media Queries */
+@media (max-width: 768px) {
+    .modal-box {
+      width: 100%!important;
+      margin-left: 0px;
+    }
+  }
   
