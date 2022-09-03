@@ -1,3 +1,11 @@
 .register{
     color: rgb(132, 0, 255);
 }
+
+.list{
+    justify-content: center;
+}
+.nav-item{
+    padding-left: 20px;
+    list-style: none;
+}
