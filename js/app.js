@@ -13,7 +13,7 @@ const displayCategories = categories =>{
         const categoryDiv = document.createElement('li');
         categoryDiv.classList.add('nav-item');
         categoryDiv.innerHTML =`
-            <a class="nav-link" href="#">${category.category_name}</a>
+            <a onclick= "loadCatDetails('${category.category_id}')" class="nav-link" href="#">${category.category_name}</a>
         `;
         categoriesContainer.appendChild(categoryDiv);
         
@@ -23,17 +23,28 @@ const displayCategories = categories =>{
 loadCategories();
 
 
-// News show
 
-const loadNews = async() =>{
-    const url = `https://openapi.programming-hero.com/api/news/{news_id}`
+
+
+// News show
+const loadCatDetails = async(category_id) =>{
+    const url = `https://openapi.programming-hero.com/api/news/${category_id}`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data.data); 
-}
+    displayNews(data.data);
+    // console.log(data.data);
 
-const displayNews = news =>{
+    }
+// const loadNews = async() =>{
+//     const url = `https://openapi.programming-hero.com/api/news/'${category_id}'`
+//     const res = await fetch(url);
+//     const data = await res.json();
+//     displayNews(data.data);
+// }
+
+const displayNews = async(news) =>{
     const newsContainer = document.getElementById('news-container');
+    newsContainer.textContent= '';
     news.forEach(newsItem =>{
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('row');
@@ -43,10 +54,11 @@ const displayNews = news =>{
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
+          <h5 class="card-title">${newsItem.title}</h5>
+          <p class="card-text">${newsItem.details}</p>
+          <div>
+          <img src="${newsItem.author.img}" alt="" srcset="" class:"img-fluid w-25 img-thumbnail">
+          </div>
       </div>
         `;
         newsContainer.appendChild(newsDiv);
@@ -54,4 +66,4 @@ const displayNews = news =>{
     })
         
     }
-loadNews();
+loadCatDetails();
