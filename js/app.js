@@ -16,8 +16,9 @@ const displayCategories = categories => {
     const categoryContainer = document.getElementById('category-container');
     categories.forEach(category => {
         const div = document.createElement('div');
+        div.classList.add('nav');
         div.innerHTML = `
-        <button onclick="newsLoad('${category.category_id}')" type="button" class="btn btn-outline-info">${category.category_name}</button>
+        <button onclick="newsLoad('${category.category_id}')" type="button" class="btn btn-outline-info nav-btn">${category.category_name}</button>
     
         `;
         categoryContainer.appendChild(div);
